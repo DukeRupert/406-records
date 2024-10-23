@@ -16,8 +16,11 @@
 	</div>
 	<div class="py-24 sm:py-32 lg:pb-40">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<img class="mx-auto h-32 w-auto sm:h-64" src="/logo.png" alt="Your Company" />
 			<div class="mx-auto max-w-2xl text-center">
-				<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
+				<h1
+					class="mt-10 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl"
+				>
 					{data.headline}
 				</h1>
 				<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
