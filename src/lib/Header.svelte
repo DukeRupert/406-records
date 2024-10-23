@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
+	import { quadOut } from 'svelte/easing';
+	import { fade, fly, type FadeParams, type FlyParams } from 'svelte/transition';
 	interface Link {
 		label: string;
 		href: string;
@@ -14,6 +15,15 @@
 	];
 
 	let nav_open = $state(false);
+	const Fade: FadeParams = {
+		duration: 250,
+		easing: quadOut
+	};
+	const Fly: FlyParams = {
+		x: 500,
+		duration: 250,
+		easing: quadOut
+	};
 </script>
 
 {#snippet Navbar(link: Link)}
@@ -79,8 +89,9 @@
 		<!-- Mobile menu, show/hide based on menu open state. -->
 		<div class="lg:hidden" role="dialog" aria-modal="true">
 			<!-- Background backdrop, show/hide based on slide-over state. -->
-			<div class="fixed inset-0 z-10"></div>
+			<div transition:fade={Fade} class="fixed inset-0 z-10"></div>
 			<div
+				transition:fly={Fly}
 				class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
 			>
 				<div class="flex items-center justify-between">
