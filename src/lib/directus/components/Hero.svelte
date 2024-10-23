@@ -1,40 +1,7 @@
-<script lang="ts" context="module">
-	import type { Button_Variants } from './Button.svelte';
-
-	// block_hero
-	export interface Block_Hero {
-		collection: 'block_hero';
-		item: Hero_Data;
-	}
-
-	export interface Hero_Data {
-		id: string;
-		headline: string;
-		description: string;
-		buttons?: Button[];
-		image: Image;
-	}
-
-	export interface Button {
-		label: string;
-		href: string;
-		variant: Button_Variants;
-	}
-
-	export interface Image {
-		id: string;
-		description: string;
-		height: string;
-		width: string;
-	}
-</script>
-
 <script lang="ts">
-	import { PUBLIC_DIRECTUS_ENDPOINT } from '$env/static/public';
 	import Buttons from './Button.svelte';
-
-	export let data: Hero_Data;
-	let img_src = PUBLIC_DIRECTUS_ENDPOINT + '/assets/' + data.image.id;
+	import { build_asset_url } from '../index';
+	let { data }: { data: Hero_Data } = $props();
 </script>
 
 <div class="relative isolate pt-14">
@@ -69,10 +36,13 @@
 				>
 					<img
 						class="w-full rounded-md object-fill shadow-2xl ring-1 ring-gray-900/10"
-						src={img_src}
-						srcset="{img_src + '?width=320'} 320w, {img_src + '?width=480'} 480w, {img_src +
-							'?width=800'} 800w, {img_src + '?width=1200'} 1200w,{img_src +
-							'?width=1600'} 1600w, {img_src + '?width=2000'} 2000w"
+						src={build_asset_url(data.image.id)}
+						srcset="{build_asset_url(data.image.id) + '?width=320'} 320w, {build_asset_url(
+							data.image.id
+						) + '?width=480'} 480w, {build_asset_url(data.image.id) +
+							'?width=800'} 800w, {build_asset_url(data.image.id) +
+							'?width=1200'} 1200w,{build_asset_url(data.image.id) +
+							'?width=1600'} 1600w, {build_asset_url(data.image.id) + '?width=2000'} 2000w"
 						sizes="(max-width: 320px) 280px,
                                 (max-width: 480px) 440px,
                                 (max-width: 800px) 760px,

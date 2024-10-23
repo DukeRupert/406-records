@@ -1,22 +1,5 @@
-<script lang="ts" context="module">
-	// block_content
-	export interface Block_Content {
-		collection: 'block_content';
-		item: Content_Data;
-	}
-
-	export interface Content_Data {
-		id: string;
-		title: string;
-		content: string;
-		testimonial: any[];
-	}
-</script>
-
 <script lang="ts">
-	import { PUBLIC_DIRECTUS_ENDPOINT } from '$env/static/public';
-
-	export let data: Content_Data;
+	let { data }: { data: Content_Data } = $props();
 </script>
 
 <div class="relative isolate overflow-hidden bg-white py-24 sm:py-32">
@@ -31,7 +14,7 @@
 	</div>
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		{#if data.testimonial && data.testimonial.length > 0}
-			<div class="prose lg:prose-xl mx-auto max-w-2xl lg:mx-0">
+			<div class="prose mx-auto max-w-2xl lg:prose-xl lg:mx-0">
 				<h1
 					class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
 				>
@@ -66,30 +49,22 @@
 					<figure class="border-l border-indigo-600 pl-8">
 						<blockquote class="text-xl font-semibold leading-8 tracking-tight text-gray-900">
 							<p>
-								“Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus nibh
-								ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet aliquet
-								eget cras. Sem volutpat enim tristique.”
+								“{data.testimonial[0].testimony}”
 							</p>
 						</blockquote>
 						<figcaption class="mt-8 flex gap-x-4">
-							<img
-								src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-								alt=""
-								class="mt-1 h-10 w-10 flex-none rounded-full bg-gray-50"
-							/>
 							<div class="text-sm leading-6">
-								<div class="font-semibold text-gray-900">Brenna Goyette</div>
-								<div class="text-gray-600">@brenna</div>
+								<div class="font-semibold text-gray-900">{data.testimonial[0].name}</div>
 							</div>
 						</figcaption>
 					</figure>
 				</div>
-				<div class="prose prose-zinc lg:prose-xl max-w-xl lg:col-span-7">
+				<div class="prose prose-zinc max-w-xl lg:prose-xl lg:col-span-7">
 					{@html data.content}
 				</div>
 			</div>
 		{:else}
-			<div class="prose lg:prose-xl mx-auto max-w-2xl lg:mx-0">
+			<div class="prose mx-auto max-w-2xl lg:prose-xl lg:mx-0">
 				<h1
 					class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
 				>

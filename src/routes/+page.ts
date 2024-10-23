@@ -12,7 +12,7 @@ export const load = (async () => {
         slug: {
           _eq: path
         }
-      }, fields: ['status', 'title', 'description', { seo: ['*', { og_image: ['id', 'description', 'height', 'width'] }] }, { blocks: ['*', { item: ['*', { image: ['id', 'description', 'height', 'width'] }] }] }]
+      }, fields: ['status', 'title', 'description', { seo: ['*', { og_image: ['id', 'description', 'height', 'width'] }] }, { blocks: ['*', { item: ['*', { image: ['id', 'description', 'height', 'width'] }, { albums: ['*', { image: ['id', 'description', 'height', 'width'] }] }] }] }]
     },
     ),
   );
