@@ -11,6 +11,12 @@ importers:
       '@directus/sdk':
         specifier: ^17.0.2
         version: 17.0.2
+      lucide-svelte:
+        specifier: ^0.453.0
+        version: 0.453.0(svelte@5.0.4)
+      mode-watcher:
+        specifier: ^0.4.1
+        version: 0.4.1(svelte@5.0.4)
     devDependencies:
       '@playwright/test':
         specifier: ^1.48.1
@@ -1088,6 +1094,11 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lucide-svelte@0.453.0:
+    resolution: {integrity: sha512-K+eE2ZeE00ThIEbAmZB3Hq0sVS+1ZLj+7nqtJvN0Xrh/KZnfnEChG+do80sctqXQEE+iG1dA2T+5fVcJS1awfA==}
+    peerDependencies:
+      svelte: ^3 || ^4 || ^5.0.0-next.42
+
   magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
 
@@ -1109,6 +1120,11 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  mode-watcher@0.4.1:
+    resolution: {integrity: sha512-bNC+1NXmwEFZtziCdZSgP7HFQTpqJPcQn9GwwJQGSf6SBF3neEPYV1uRwkYuAQwbsvsXIYtzaqgedDzJ7D1mhg==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0-next.1
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -2648,6 +2664,10 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  lucide-svelte@0.453.0(svelte@5.0.4):
+    dependencies:
+      svelte: 5.0.4
+
   magic-string@0.30.12:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -2668,6 +2688,10 @@ snapshots:
       brace-expansion: 2.0.1
 
   minipass@7.1.2: {}
+
+  mode-watcher@0.4.1(svelte@5.0.4):
+    dependencies:
+      svelte: 5.0.4
 
   mri@1.2.0: {}
 

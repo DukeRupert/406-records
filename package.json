@@ -44,6 +44,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@directus/sdk": "^17.0.2"
+		"@directus/sdk": "^17.0.2",
+		"lucide-svelte": "^0.453.0",
+		"mode-watcher": "^0.4.1"
 	}
 }
