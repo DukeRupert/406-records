@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import { quadOut } from 'svelte/easing';
 	import { fade, fly, type FadeParams, type FlyParams } from 'svelte/transition';
+	import Lightswitch from './Lightswitch.svelte';
+
 	interface Link {
 		label: string;
 		href: string;
@@ -11,7 +13,8 @@
 		{ label: 'services', href: '#services' },
 		{ label: 'discography', href: '#discography' },
 		{ label: 'pricing', href: '#pricing' },
-		{ label: 'biography', href: '#biography' }
+		{ label: 'biography', href: '#biography' },
+		{ label: 'contact us', href: '#contact-us' }
 	];
 
 	let nav_open = $state(false);
@@ -27,18 +30,22 @@
 </script>
 
 {#snippet Navbar(link: Link)}
-	<a href={link.href} class="text-sm font-semibold leading-6 text-gray-900">{link.label}</a>
+	<a
+		href={link.href}
+		class="text-sm font-semibold capitalize leading-6 text-foreground hover:text-muted-foreground"
+		>{link.label}</a
+	>
 {/snippet}
 
 {#snippet Mobile(link: Link)}
 	<a
 		href={link.href}
-		class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+		class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold capitalize leading-7 text-popover-foreground hover:text-muted-foreground"
 		>{link.label}</a
 	>
 {/snippet}
 
-<header class="bg-white">
+<header class="bg-background">
 	<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 		<div class="flex lg:flex-1">
 			<a href="/" class="-m-1.5 p-1.5">
@@ -50,7 +57,8 @@
 				/>
 			</a>
 		</div>
-		<div class="z-10 flex lg:hidden">
+		<div class="z-10 flex gap-8 lg:hidden">
+			<Lightswitch />
 			<button
 				type="button"
 				onclick={() => (nav_open = true)}
@@ -79,10 +87,8 @@
 				{@render Navbar(link)}
 			{/each}
 		</div>
-		<div class="hidden lg:flex lg:flex-1 lg:justify-end">
-			<a href="#contact-us" class="text-sm font-semibold leading-6 text-gray-900"
-				>Contact us <span aria-hidden="true">&rarr;</span></a
-			>
+		<div class="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-2">
+			<Lightswitch />
 		</div>
 	</nav>
 	{#if nav_open}
@@ -92,7 +98,7 @@
 			<div transition:fade={Fade} class="fixed inset-0 z-10"></div>
 			<div
 				transition:fly={Fly}
-				class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+				class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-popover px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-muted-foreground"
 			>
 				<div class="flex items-center justify-between">
 					<a href="/" class="-m-1.5 p-1.5">
@@ -106,7 +112,7 @@
 					<button
 						type="button"
 						onclick={() => (nav_open = false)}
-						class="-m-2.5 rounded-md p-2.5 text-gray-700"
+						class="-m-2.5 rounded-md p-2.5 text-muted-foreground"
 					>
 						<span class="sr-only">Close menu</span>
 						<svg
@@ -128,13 +134,6 @@
 							{#each links as link}
 								{@render Mobile(link)}
 							{/each}
-						</div>
-						<div class="py-6">
-							<a
-								href="#contact-us"
-								class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-								>Contact us</a
-							>
 						</div>
 					</div>
 				</div>
