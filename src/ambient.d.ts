@@ -1,6 +1,13 @@
+// Website
+
+interface Link {
+  label: string;
+  href: string;
+}
+
 // Directus
 interface Schema {
-  site_settings: Site_Settings
+  settings: Settings
   page: Page[]
 }
 
@@ -40,17 +47,10 @@ interface Og_Image {
   width: number
 }
 
-interface Site_Settings {
+interface Settings {
   id: string
-  status: string
-  user_created: string
-  date_created: string
-  user_updated: string
-  date_updated: string
   name: string
-  logo?: string
-  schema_type: string
-  description: string
+  logo: string
   email: string
   telephone: string
   street_address: string
@@ -58,7 +58,6 @@ interface Site_Settings {
   state: string
   postal_code: string
   socials: Social[]
-  logo_full?: string
 }
 
 interface Social {

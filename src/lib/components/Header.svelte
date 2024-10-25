@@ -3,19 +3,9 @@
 	import { quadOut } from 'svelte/easing';
 	import { fade, fly, type FadeParams, type FlyParams } from 'svelte/transition';
 	import Lightswitch from './Lightswitch.svelte';
+	import { build_asset_url } from '$lib/directus';
 
-	interface Link {
-		label: string;
-		href: string;
-	}
-
-	const links: Link[] = [
-		{ label: 'services', href: '#services' },
-		{ label: 'discography', href: '#discography' },
-		{ label: 'pricing', href: '#pricing' },
-		{ label: 'biography', href: '#biography' },
-		{ label: 'contact us', href: '#contact-us' }
-	];
+	let { links, logo }: { links: Link[]; logo: string } = $props();
 
 	let nav_open = $state(false);
 	const Fade: FadeParams = {
@@ -52,7 +42,7 @@
 				<span class="sr-only">406 Records</span>
 				<img
 					class="h-8 w-auto {$page.url.pathname === '/' ? 'invisible' : ''}"
-					src="/logo.png"
+					src={build_asset_url(logo)}
 					alt="406 records logo"
 				/>
 			</a>
@@ -103,11 +93,7 @@
 				<div class="flex items-center justify-between">
 					<a href="/" class="-m-1.5 p-1.5">
 						<span class="sr-only">406 Records</span>
-						<img
-							class="h-8 w-auto"
-							src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-							alt=""
-						/>
+						<img class="h-8 w-auto" src={build_asset_url(logo)} alt="406 records logo" />
 					</a>
 					<button
 						type="button"

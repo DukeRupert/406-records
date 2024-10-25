@@ -6,6 +6,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	export let data: LayoutData;
+	console.log(data.settings);
 
 	const links: Link[] = [
 		{ label: 'services', href: '#services' },
@@ -18,7 +19,7 @@
 
 <ModeWatcher />
 <div class="bg-background">
-	<Header {links} logo={data.settings.logo} />
+	<Header {links} />
 	<slot />
 	<Footer {links} socials={data.settings.socials} name={data.settings.name} />
 </div>

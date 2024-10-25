@@ -21,20 +21,20 @@
 		>
 	{:else if tag == 'ma'}
 		<span
-			class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-400 dark:text-blue-400 dark:ring-blue-400/30"
+			class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30"
 			>mastered</span
 		>
 	{/if}
 {/snippet}
 
-<div id="discography" class="bg-gray-900 py-24 sm:py-32">
+<div id="discography" class="bg-gray-50 py-24 dark:bg-gray-900 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:mx-0">
-			<h2 class="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+			<h2 class="text-pretty text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
 				{data.title}
 			</h2>
 			{#if data.description}
-				<p class="mt-6 text-lg leading-8 text-gray-300">
+				<p class="mt-6 text-lg leading-8 text-muted-foreground">
 					{data.description}
 				</p>
 			{/if}
