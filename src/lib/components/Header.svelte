@@ -8,10 +8,16 @@
 	let { links, logo }: { links: Link[]; logo: string } = $props();
 
 	let nav_open = $state(false);
+
+	const close_menu = (): void => {
+		nav_open = false;
+	};
+
 	const Fade: FadeParams = {
 		duration: 250,
 		easing: quadOut
 	};
+
 	const Fly: FlyParams = {
 		x: 500,
 		duration: 250,
@@ -30,6 +36,7 @@
 {#snippet Mobile(link: Link)}
 	<a
 		href={link.href}
+		onclick={close_menu}
 		class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold capitalize leading-7 text-popover-foreground hover:text-muted-foreground"
 		>{link.label}</a
 	>
