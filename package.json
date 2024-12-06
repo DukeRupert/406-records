@@ -46,6 +46,7 @@
 	"dependencies": {
 		"@directus/sdk": "^17.0.2",
 		"lucide-svelte": "^0.453.0",
-		"mode-watcher": "^0.4.1"
+		"mode-watcher": "^0.4.1",
+		"postmark": "^4.0.5"
 	}
 }

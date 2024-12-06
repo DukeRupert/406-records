@@ -27,7 +27,7 @@
 
 {#snippet Navbar(link: Link)}
 	<a
-		href={link.href}
+		href={"/" + link.href}
 		class="text-sm font-semibold capitalize leading-6 text-foreground hover:text-muted-foreground"
 		>{link.label}</a
 	>
