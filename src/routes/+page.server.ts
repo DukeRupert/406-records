@@ -54,6 +54,14 @@ function validatePhone(phone: string): string | undefined {
 export const actions = {
     default: async ({ request }) => {
         const formData = await request.formData();
+        // honeypots for bots
+        if (formData.get('bot_trap')) {
+            return fail(400, { success: false });
+        }
+        if (formData.get('address')) {
+            return fail(400, { success: false });
+        }
+        // Get to the real stuff
         const data: ContactFormData = {
             name: formData.get('name') as string,
             email: formData.get('email') as string,

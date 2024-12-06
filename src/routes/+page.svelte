@@ -48,6 +48,7 @@
 							id="name"
 							class="block w-full rounded-md border border-border px-3.5 py-2 focus:outline-none focus:ring-2 focus:ring-ring"
 							required
+							max="80"
 						/>
 					</div>
 					{#if form?.errors?.name}
@@ -85,6 +86,12 @@
 					{#if form?.errors?.phone}
 						<p class="mt-2.5 text-sm text-red-600">{form.errors.phone}</p>
 					{/if}
+				</div>
+				<div class="hidden" aria-hidden="true">
+					<input type="text" name="bot_trap" tabindex="-1" autocomplete="off" />
+				</div>
+				<div class="hidden" aria-hidden="true">
+					<input type="text" name="address" tabindex="-1" autocomplete="off" />
 				</div>
 			</div>
 
