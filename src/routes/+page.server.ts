@@ -21,14 +21,34 @@ function validateForm(formData: ContactFormData) {
     }
 
     // Basic phone validation - can be made more strict if needed
-    if (!formData.phone || formData.phone.length < 10) {
-        errors.phone = 'Please enter a valid phone number';
-    }
+    const phoneError = validatePhone(formData.phone);
+    if (phoneError) errors.phone = phoneError;
 
     return {
         isValid: Object.keys(errors).length === 0,
         errors
     };
+}
+
+function validatePhone(phone: string): string | undefined {
+    // Remove all non-numeric characters for validation
+    const cleanPhone = phone.replace(/\D/g, '');
+
+    // Check for empty
+    if (!phone.trim()) {
+        return 'Phone number is required';
+    }
+
+    // Basic US phone validation (10 digits, optionally starting with 1)
+    if (cleanPhone.length === 11 && !cleanPhone.startsWith('1')) {
+        return 'Invalid US phone number';
+    }
+
+    if (cleanPhone.length !== 10 && cleanPhone.length !== 11) {
+        return 'Phone number must be 10 digits';
+    }
+
+    return undefined;
 }
 
 export const actions = {
