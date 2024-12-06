@@ -1,4 +1,4 @@
-import { CONTACT_FORM_EMAIL } from '$env/static/private';
+import { FROM_EMAIL, CONTACT_FORM_EMAIL } from '$env/static/private';
 import { fail } from '@sveltejs/kit';
 import postmarkClient from '$lib/postmark';
 import type { Actions } from './$types';
@@ -48,7 +48,7 @@ export const actions = {
 
         try {
             await postmarkClient.sendEmail({
-                From: CONTACT_FORM_EMAIL,
+                From: FROM_EMAIL,
                 To: CONTACT_FORM_EMAIL,
                 Subject: '406 Records - New Contact Form Submission',
                 TextBody: `
