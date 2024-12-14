@@ -31,7 +31,9 @@
 </script>
 
 <Blocks data={data.page.blocks} />
-<div id="contact-us" class="px-6 py-24">
+<div id="contact-us" class="relative isolate pt-14">
+	<div class="py-24 sm:py-32 lg:pb-40">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 	<div>
 		<h1 class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
 			406 Records
@@ -109,4 +111,6 @@
 			</div>
 		</form>
 	</div>
+</div>
+</div>
 </div>
