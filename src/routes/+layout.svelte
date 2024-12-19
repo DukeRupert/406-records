@@ -11,6 +11,7 @@
 		{ label: 'services', href: '#services' },
 		{ label: 'discography', href: '#discography' },
 		{ label: 'pricing', href: '#pricing' },
+		{ label: 'meet the artists', href: '#meet-the-artists' },
 		{ label: 'biography', href: '#biography' },
 		{ label: 'contact us', href: '#contact-us' }
 	];
