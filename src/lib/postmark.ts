@@ -1,6 +1,6 @@
-import { POSTMARK_API_TOKEN } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import postmark from 'postmark'
 
-var postmarkClient = new postmark.ServerClient(POSTMARK_API_TOKEN);
-
-export default postmarkClient
+export function getPostmarkClient() {
+    return new postmark.ServerClient(env.POSTMARK_API_TOKEN || '');
+}

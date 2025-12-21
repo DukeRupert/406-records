@@ -1,0 +1,12 @@
+services:
+  web:
+    image: ${DOCKER_IMAGE:-username/406-records:latest}
+    ports:
+      - "${LISTEN_PORT:-8086}:3000"
+    environment:
+      - NODE_ENV=production
+      - PUBLIC_DIRECTUS_ENDPOINT=${PUBLIC_DIRECTUS_ENDPOINT}
+      - POSTMARK_API_TOKEN=${POSTMARK_API_TOKEN}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - CONTACT_FORM_EMAIL=${CONTACT_FORM_EMAIL}
+    restart: unless-stopped

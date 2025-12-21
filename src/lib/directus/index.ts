@@ -1,17 +1,20 @@
 import { createDirectus, rest } from "@directus/sdk";
-import { PUBLIC_DIRECTUS_ENDPOINT } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 
-const endpoint = PUBLIC_DIRECTUS_ENDPOINT || ''
-if (!endpoint) console.log('ERROR: endpoint not provided for Directus instance')
+let _client: ReturnType<typeof createDirectus<Schema>> | null = null;
 
-// Client with REST support
-const client = createDirectus<Schema>(endpoint).with(rest())
-
-export const build_asset_url = (id: string): string => {
-  return `${endpoint}/assets/${id}`
+export function getClient() {
+  if (!_client) {
+    const endpoint = env.PUBLIC_DIRECTUS_ENDPOINT || '';
+    if (!endpoint) console.log('ERROR: endpoint not provided for Directus instance');
+    _client = createDirectus<Schema>(endpoint).with(rest());
+  }
+  return _client;
 }
 
-export default client
+export const build_asset_url = (id: string): string => {
+  return `${env.PUBLIC_DIRECTUS_ENDPOINT}/assets/${id}`;
+}
 export { default as Hero } from './components/Hero.svelte'
 export { default as Content } from './components/Content_with_testimonial.svelte'
 export { default as Discography } from './components/Discography.svelte'

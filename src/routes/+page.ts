@@ -1,11 +1,11 @@
 import type { PageLoad } from './$types';
-import client from '$lib/directus/index';
+import { getClient } from '$lib/directus/index';
 import { readItems } from '@directus/sdk';
 import { error } from '@sveltejs/kit';
 
 export const load = (async () => {
   const path = '/';
-
+  const client = getClient();
   const res = await client.request(
     readItems('page', {
       filter: {
