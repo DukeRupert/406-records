@@ -163,3 +163,41 @@ contactForm?.addEventListener('submit', async function(e) {
     submitBtn.textContent = 'Send Message';
   }
 });
+
+// Discography carousel
+document.addEventListener('DOMContentLoaded', function() {
+  const discographySwiper = document.querySelector('.discography-swiper');
+  if (discographySwiper && typeof Swiper !== 'undefined') {
+    new Swiper('.discography-swiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      rewind: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      keyboard: {
+        enabled: true
+      },
+      a11y: {
+        prevSlideMessage: 'Previous album',
+        nextSlideMessage: 'Next album',
+        paginationBulletMessage: 'Go to album {{index}}'
+      }
+    });
+  }
+});
