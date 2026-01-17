@@ -38,9 +38,4 @@ biography:
     <p>Kyle Willis has been a musician since 2005, playing shows through 17 states and 6 countries. After relocating to Montana and starting a family, Kyle decided to put down roots and build a recording studio.</p>
     <p>In 2024, while working with artist Lance Handyside on his debut album 'Six String Ride,' Kyle decided to take his studio and make a business out of it. The result is 406 Records - a professional recording studio dedicated to helping Montana musicians bring their vision to life.</p>
   image: "/images/kyle-willis.png"
-contact:
-  email: "kyle@406records.com"
-  phone: "(406) 555-0123"
-  location: "Missoula, Montana"
-  hours: "By appointment"
 ---
