@@ -9,6 +9,11 @@ enableRobotsTXT = true
   # Cloudflare Turnstile site key for contact form
   turnstileSiteKey = "0x4AAAAAAA"
 
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
 [build]
   writeStats = true
 

@@ -11,7 +11,9 @@
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:image" content="{{ .Site.BaseURL }}logo.png">
+  <meta property="og:image" content="{{ .Site.BaseURL }}images/hero.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -29,6 +31,51 @@
 
   <!-- Swiper.js for carousels -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@406RecordsMT">
+  <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="twitter:image" content="{{ .Site.BaseURL }}images/hero.jpg">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RecordingStudio",
+    "name": "406 Records",
+    "description": "{{ .Site.Params.description }}",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": "{{ .Site.BaseURL }}logo.png",
+    "image": "{{ .Site.BaseURL }}images/hero.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Missoula",
+      "addressRegion": "MT",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 46.8721,
+      "longitude": -113.9940
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Montana"
+    },
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61561722642587",
+      "https://x.com/406RecordsMT",
+      "https://www.youtube.com/playlist?list=PLpu9moa33-2qyqVqpDKhL8AvxK1zjsbwj"
+    ],
+    "serviceType": ["Music Recording", "Audio Mixing", "Audio Mastering", "Music Production"]
+  }
+  </script>
 
   <!-- Plausible Analytics -->
   <script defer data-domain="406records.com" src="https://plausible.io/js/script.js"></script>
