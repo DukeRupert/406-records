@@ -1,0 +1,35 @@
+- artist: "Lance Handyside"
+  image: "/images/albums/lance-handyside.jpg"
+  link: "https://open.spotify.com/artist/2Mv0v94Iur772e4PSWCEZF"
+  tags:
+    - e
+    - p
+    - mi
+    - ma
+
+- artist: "Alex Zimmerman"
+  image: "/images/albums/alex-zimmerman.png"
+  link: "https://open.spotify.com/artist/14L8iMkEDZ5IqhyQup6DDm"
+  tags:
+    - p
+    - e
+    - mi
+    - ma
+
+- artist: "Lindzy Neilson"
+  image: "/images/albums/lindzy-neilson.png"
+  link: "https://open.spotify.com/album/48q2udV5Tt80AHQhx4ipZK"
+  tags:
+    - e
+    - p
+    - mi
+    - ma
+
+- artist: "Gary Frigo"
+  image: "/images/albums/gary-frigo.png"
+  link: "https://open.spotify.com/album/7y4ulcPe4S0GDUPgG4b0v1"
+  tags:
+    - e
+    - p
+    - mi
+    - ma

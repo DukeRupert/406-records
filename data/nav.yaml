@@ -1,0 +1,17 @@
+- label: "Services"
+  href: "#services"
+
+- label: "Discography"
+  href: "#discography"
+
+- label: "Pricing"
+  href: "#pricing"
+
+- label: "Artists"
+  href: "#meet-the-artists"
+
+- label: "Bio"
+  href: "#biography"
+
+- label: "Contact"
+  href: "#contact-us"

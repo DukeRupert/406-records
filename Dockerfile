@@ -1,25 +1,58 @@
-FROM node:20-alpine AS builder
+# Stage 1: Build Hugo static site
+FROM hugomods/hugo:exts AS hugo-builder
+
+WORKDIR /src
+
+# Install Node.js for Tailwind CSS processing
+RUN apk add --no-cache nodejs npm
+
+# Copy Hugo files
+COPY hugo.toml ./
+COPY content/ ./content/
+COPY layouts/ ./layouts/
+COPY data/ ./data/
+COPY assets/ ./assets/
+COPY static/ ./static/
+COPY package.json tailwind.config.js postcss.config.js ./
+
+# Install npm dependencies and build
+RUN npm install
+RUN hugo --minify
+
+# Stage 2: Build Go API
+FROM golang:1.21-alpine AS go-builder
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci
+COPY api/go.mod ./
+RUN go mod download
 
-COPY . .
-RUN npm run build
+COPY api/main.go ./
+RUN CGO_ENABLED=0 GOOS=linux go build -o /api-server main.go
 
-FROM node:20-alpine
+# Stage 3: Final image with Caddy
+FROM caddy:2-alpine
 
-WORKDIR /app
+# Install supervisor to run both Caddy and the API
+RUN apk add --no-cache supervisor
 
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/package*.json ./
+# Copy Hugo static files
+COPY --from=hugo-builder /src/public /srv
 
-RUN npm ci --omit=dev
+# Copy Go API binary
+COPY --from=go-builder /api-server /usr/local/bin/api-server
 
-ENV NODE_ENV=production
-ENV PORT=3000
+# Copy Caddy configuration
+COPY Caddyfile /etc/caddy/Caddyfile
 
-EXPOSE 3000
+# Copy supervisor configuration
+COPY supervisord.conf /etc/supervisord.conf
 
-CMD ["node", "build"]
+# Copy entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

@@ -1,0 +1,25 @@
+<div id="meet-the-artists" class="relative isolate overflow-hidden bg-gray-50 dark:bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-pretty text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+        {{ .Params.artists.title }}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-muted-foreground">
+        {{ .Params.artists.description }}
+      </p>
+    </div>
+    <div class="mt-16">
+      <div class="aspect-video w-full max-w-4xl mx-auto">
+        <iframe
+          class="w-full h-full rounded-lg"
+          src="{{ .Params.artists.youtube_playlist }}"
+          title="406 Records Artist Interviews"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>

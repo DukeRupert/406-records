@@ -1,0 +1,11 @@
+- name: "facebook"
+  url: "https://www.facebook.com/profile.php?id=61561722642587"
+  icon: "facebook"
+
+- name: "x"
+  url: "https://x.com/406RecordsMT"
+  icon: "x"
+
+- name: "youtube"
+  url: "https://www.youtube.com/playlist?list=PLpu9moa33-2qyqVqpDKhL8AvxK1zjsbwj"
+  icon: "youtube"

@@ -1,0 +1,18 @@
+baseURL = "https://www.406records.com/"
+languageCode = "en-us"
+title = "406 Records"
+enableRobotsTXT = true
+
+[params]
+  description = "Professional Recording Services at 406 Records"
+  author = "Kyle Willis"
+  # Cloudflare Turnstile site key for contact form
+  turnstileSiteKey = "0x4AAAAAAA"
+
+[build]
+  writeStats = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.128.0"

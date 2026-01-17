@@ -1,0 +1,114 @@
+<header class="bg-background">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <a href="/" class="-m-1.5 p-1.5">
+        <span class="sr-only">406 Records</span>
+        <img
+          class="h-8 w-auto {{ if .IsHome }}invisible{{ end }}"
+          src="/logo.png"
+          alt="406 records logo"
+        >
+      </a>
+    </div>
+    <div class="z-10 flex gap-8 lg:hidden">
+      <!-- Dark mode toggle (mobile) -->
+      <button
+        type="button"
+        id="theme-toggle-mobile"
+        class="rounded-md p-2 text-muted-foreground hover:text-foreground"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="h-5 w-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="h-5 w-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+      </button>
+      <!-- Mobile menu button -->
+      <button
+        type="button"
+        id="mobile-menu-button"
+        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-300"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="hidden lg:flex lg:gap-x-12">
+      {{ range site.Data.nav }}
+      <a
+        href="{{ .href }}"
+        class="text-sm font-semibold capitalize leading-6 text-foreground hover:text-muted-foreground"
+      >{{ .label }}</a>
+      {{ end }}
+    </div>
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-2">
+      <!-- Dark mode toggle (desktop) -->
+      <button
+        type="button"
+        id="theme-toggle-desktop"
+        class="rounded-md p-2 text-muted-foreground hover:text-foreground"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="h-5 w-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="h-5 w-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-modal="true">
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-10 bg-black/20"></div>
+    <div id="mobile-menu-panel" class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-popover px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-muted-foreground transform translate-x-full transition-transform duration-250 ease-out">
+      <div class="flex items-center justify-between">
+        <a href="/" class="-m-1.5 p-1.5">
+          <span class="sr-only">406 Records</span>
+          <img class="h-8 w-auto" src="/logo.png" alt="406 records logo">
+        </a>
+        <button
+          type="button"
+          id="mobile-menu-close"
+          class="-m-2.5 rounded-md p-2.5 text-muted-foreground"
+        >
+          <span class="sr-only">Close menu</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="space-y-2 py-6">
+            {{ range site.Data.nav }}
+            <a
+              href="{{ .href }}"
+              class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold capitalize leading-7 text-popover-foreground hover:text-muted-foreground"
+            >{{ .label }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,29 @@
+:80 {
+    # Serve static files from Hugo build
+    root * /srv
+    file_server
+
+    # Reverse proxy API requests to Go backend
+    handle /api/* {
+        reverse_proxy localhost:8080
+    }
+
+    # Handle SPA-style routing (serve index.html for non-existent paths)
+    try_files {path} /index.html
+
+    # Enable compression
+    encode gzip
+
+    # Security headers
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+
+    # Cache static assets
+    @static {
+        path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2
+    }
+    header @static Cache-Control "public, max-age=31536000, immutable"
+}
