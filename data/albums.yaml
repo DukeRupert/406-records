@@ -1,4 +1,5 @@
 - artist: "Lance Handyside"
+  album: "Six String Ride"
   image: "/images/albums/lance-handyside.jpg"
   link: "https://open.spotify.com/artist/2Mv0v94Iur772e4PSWCEZF"
   tags:
@@ -8,6 +9,7 @@
     - ma
 
 - artist: "Alex Zimmerman"
+  album: ""
   image: "/images/albums/alex-zimmerman.png"
   link: "https://open.spotify.com/artist/14L8iMkEDZ5IqhyQup6DDm"
   tags:
@@ -17,6 +19,7 @@
     - ma
 
 - artist: "Lindzy Neilson"
+  album: ""
   image: "/images/albums/lindzy-neilson.png"
   link: "https://open.spotify.com/album/48q2udV5Tt80AHQhx4ipZK"
   tags:
@@ -26,6 +29,7 @@
     - ma
 
 - artist: "Gary Frigo"
+  album: ""
   image: "/images/albums/gary-frigo.png"
   link: "https://open.spotify.com/album/7y4ulcPe4S0GDUPgG4b0v1"
   tags:

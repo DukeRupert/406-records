@@ -21,6 +21,9 @@
             <h3 class="mt-4 text-lg font-semibold leading-8 tracking-tight text-foreground text-center">
               {{ .artist }}
             </h3>
+            {{ with .album }}
+            <p class="text-sm text-muted-foreground text-center italic">{{ . }}</p>
+            {{ end }}
             <div class="mt-3 flex flex-wrap justify-center gap-2">
               {{ range .tags }}
               {{ if eq . "e" }}
