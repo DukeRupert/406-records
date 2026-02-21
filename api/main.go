@@ -17,6 +17,7 @@ type ContactRequest struct {
 	Name           string `json:"name"`
 	Email          string `json:"email"`
 	Phone          string `json:"phone"`
+	ProjectType    string `json:"project_type"`
 	Message        string `json:"message"`
 	TurnstileToken string `json:"turnstile_token"`
 }
@@ -120,6 +121,7 @@ func validateContactRequest(req *ContactRequest) error {
 	req.Name = strings.TrimSpace(req.Name)
 	req.Email = strings.TrimSpace(req.Email)
 	req.Phone = strings.TrimSpace(req.Phone)
+	req.ProjectType = strings.TrimSpace(req.ProjectType)
 	req.Message = strings.TrimSpace(req.Message)
 
 	if len(req.Name) < 2 {
@@ -135,6 +137,17 @@ func validateContactRequest(req *ContactRequest) error {
 
 	if !validatePhone(req.Phone) {
 		return fmt.Errorf("invalid phone number")
+	}
+
+	validProjectTypes := map[string]bool{
+		"Recording":       true,
+		"Mixing":          true,
+		"Mastering":       true,
+		"Full Production": true,
+		"Other":           true,
+	}
+	if req.ProjectType != "" && !validProjectTypes[req.ProjectType] {
+		return fmt.Errorf("invalid project type")
 	}
 
 	if len(req.Message) < 10 {
@@ -197,19 +210,21 @@ func sendEmail(req *ContactRequest) error {
 <p><strong>Name:</strong> %s</p>
 <p><strong>Email:</strong> %s</p>
 <p><strong>Phone:</strong> %s</p>
+<p><strong>Project Type:</strong> %s</p>
 <h3>Message:</h3>
 <p>%s</p>
-`, escapeHTML(req.Name), escapeHTML(req.Email), escapeHTML(req.Phone), escapeHTML(req.Message))
+`, escapeHTML(req.Name), escapeHTML(req.Email), escapeHTML(req.Phone), escapeHTML(req.ProjectType), escapeHTML(req.Message))
 
 	textBody := fmt.Sprintf(`New Contact Form Submission
 
 Name: %s
 Email: %s
 Phone: %s
+Project Type: %s
 
 Message:
 %s
-`, req.Name, req.Email, req.Phone, req.Message)
+`, req.Name, req.Email, req.Phone, req.ProjectType, req.Message)
 
 	email := PostmarkEmail{
 		From:     fromEmail,

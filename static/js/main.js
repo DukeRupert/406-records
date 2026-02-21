@@ -1,21 +1,3 @@
-// Dark mode toggle
-function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.classList.contains('dark');
-
-  if (isDark) {
-    html.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  } else {
-    html.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-  }
-}
-
-// Initialize theme toggles
-document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
-document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
-
 // Mobile menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenuClose = document.getElementById('mobile-menu-close');
@@ -26,6 +8,7 @@ const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
 function openMobileMenu() {
   mobileMenu.classList.remove('hidden');
+  mobileMenuButton?.setAttribute('aria-expanded', 'true');
   // Trigger reflow for transition
   mobileMenuPanel.offsetHeight;
   mobileMenuPanel.classList.add('open');
@@ -35,6 +18,7 @@ function openMobileMenu() {
 function closeMobileMenu() {
   mobileMenuPanel.classList.remove('open');
   mobileMenuPanel.classList.add('translate-x-full');
+  mobileMenuButton?.setAttribute('aria-expanded', 'false');
   setTimeout(() => {
     mobileMenu.classList.add('hidden');
   }, 250);
@@ -69,7 +53,7 @@ function hideError(fieldId) {
 }
 
 function clearErrors() {
-  ['name', 'email', 'phone', 'message'].forEach(field => hideError(field));
+  ['name', 'email', 'phone', 'project_type', 'message'].forEach(field => hideError(field));
   formSuccess.classList.add('hidden');
   formError.classList.add('hidden');
 }
@@ -92,6 +76,7 @@ contactForm?.addEventListener('submit', async function(e) {
   const name = formData.get('name')?.toString().trim() || '';
   const email = formData.get('email')?.toString().trim() || '';
   const phone = formData.get('phone')?.toString().trim() || '';
+  const project_type = formData.get('project_type')?.toString().trim() || '';
   const message = formData.get('message')?.toString().trim() || '';
 
   // Get Turnstile token
@@ -112,6 +97,11 @@ contactForm?.addEventListener('submit', async function(e) {
 
   if (!phone || !validatePhone(phone)) {
     showError('phone', 'Please enter a valid phone number');
+    hasErrors = true;
+  }
+
+  if (!project_type) {
+    showError('project_type', 'Please select a project type');
     hasErrors = true;
   }
 
@@ -136,6 +126,7 @@ contactForm?.addEventListener('submit', async function(e) {
         name,
         email,
         phone,
+        project_type,
         message,
         turnstile_token: turnstileResponse
       })

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,7 @@
   <meta property="og:image" content="{{ .Site.BaseURL }}images/hero.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="406 Records recording studio in Helena, Montana">
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -54,14 +55,14 @@
     "image": "{{ .Site.BaseURL }}images/hero.jpg",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Missoula",
+      "addressLocality": "Helena",
       "addressRegion": "MT",
       "addressCountry": "US"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 46.8721,
-      "longitude": -113.9940
+      "latitude": 46.5958,
+      "longitude": -112.0270
     },
     "areaServed": {
       "@type": "State",
@@ -94,18 +95,6 @@
 
   {{ partial "footer.html" . }}
 
-  <!-- Dark mode and mobile menu scripts -->
-  <script>
-    // Dark mode initialization
-    (function() {
-      const theme = localStorage.getItem('theme');
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
   <script src="/js/main.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>

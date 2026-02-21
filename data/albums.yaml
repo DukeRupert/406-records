@@ -2,6 +2,7 @@
   album: "Six String Ride"
   image: "/images/albums/lance-handyside.jpg"
   link: "https://open.spotify.com/artist/2Mv0v94Iur772e4PSWCEZF"
+  embed: "https://open.spotify.com/embed/artist/2Mv0v94Iur772e4PSWCEZF?theme=0"
   tags:
     - e
     - p
@@ -12,6 +13,7 @@
   album: ""
   image: "/images/albums/alex-zimmerman.png"
   link: "https://open.spotify.com/artist/14L8iMkEDZ5IqhyQup6DDm"
+  embed: "https://open.spotify.com/embed/artist/14L8iMkEDZ5IqhyQup6DDm?theme=0"
   tags:
     - p
     - e
@@ -22,6 +24,7 @@
   album: ""
   image: "/images/albums/lindzy-neilson.png"
   link: "https://open.spotify.com/album/48q2udV5Tt80AHQhx4ipZK"
+  embed: "https://open.spotify.com/embed/album/48q2udV5Tt80AHQhx4ipZK?theme=0"
   tags:
     - e
     - p
@@ -32,6 +35,7 @@
   album: ""
   image: "/images/albums/gary-frigo.png"
   link: "https://open.spotify.com/album/7y4ulcPe4S0GDUPgG4b0v1"
+  embed: "https://open.spotify.com/embed/album/7y4ulcPe4S0GDUPgG4b0v1?theme=0"
   tags:
     - e
     - p

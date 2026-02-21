@@ -1,10 +1,10 @@
 baseURL = "https://www.406records.com/"
 languageCode = "en-us"
-title = "406 Records"
+title = "406 Records | Recording Studio in Helena, MT"
 enableRobotsTXT = true
 
 [params]
-  description = "Professional Recording Services at 406 Records"
+  description = "Professional recording, mixing, mastering & music production in Helena, Montana. Founded by touring musician Kyle Willis. Hear our work on Spotify."
   author = "Kyle Willis"
   # Cloudflare Turnstile site key for contact form
   turnstileSiteKey = "0x4AAAAAAA"
