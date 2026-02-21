@@ -8,9 +8,6 @@
         reverse_proxy localhost:8080
     }
 
-    # Handle SPA-style routing (serve index.html for non-existent paths)
-    try_files {path} /index.html
-
     # Enable compression
     encode gzip
 
@@ -23,7 +20,14 @@
 
     # Cache static assets
     @static {
-        path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2
+        path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.webp *.woff *.woff2
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # Serve custom 404 page
+    handle_errors {
+        @404 expression {err.status_code} == 404
+        rewrite @404 /404.html
+        file_server
+    }
 }

@@ -10,13 +10,27 @@
         </div>
       </div>
       {{ with .Params.biography.image }}
+      {{- $src := resources.Get . -}}
+      {{- $fallback := $src.Resize "768x jpg" -}}
       <div class="lg:col-span-1">
-        <img
-          class="w-full rounded-xl shadow-xl ring-1 ring-border"
-          src="{{ . }}"
-          alt="Kyle Willis, founder of 406 Records"
-          loading="lazy"
-        >
+        <picture>
+          <source
+            type="image/webp"
+            srcset="
+              {{ ($src.Resize "480x webp").RelPermalink }} 480w,
+              {{ ($src.Resize "768x webp").RelPermalink }} 768w,
+              {{ ($src.Resize "1024x webp").RelPermalink }} 1024w"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          >
+          <img
+            class="w-full rounded-xl shadow-xl ring-1 ring-border"
+            src="{{ $fallback.RelPermalink }}"
+            alt="Kyle Willis, founder of 406 Records"
+            width="{{ $fallback.Width }}"
+            height="{{ $fallback.Height }}"
+            loading="lazy"
+          >
+        </picture>
       </div>
       {{ end }}
     </div>

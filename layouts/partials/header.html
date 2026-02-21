@@ -3,11 +3,19 @@
     <div class="flex lg:flex-1">
       <a href="/" class="-m-1.5 p-1.5">
         <span class="sr-only">406 Records</span>
-        <img
-          class="h-8 w-auto {{ if .IsHome }}invisible{{ end }}"
-          src="/logo.png"
-          alt="406 Records logo"
-        >
+        {{- $logo := resources.Get "images/logo.png" -}}
+        {{- $logoWebp := $logo.Resize "64x webp" -}}
+        {{- $logoPng := $logo.Resize "64x png" -}}
+        <picture>
+          <source type="image/webp" srcset="{{ $logoWebp.RelPermalink }}">
+          <img
+            class="h-8 w-auto {{ if .IsHome }}invisible{{ end }}"
+            src="{{ $logoPng.RelPermalink }}"
+            alt="406 Records logo"
+            width="32"
+            height="32"
+          >
+        </picture>
       </a>
     </div>
     <div class="z-10 flex lg:hidden">
@@ -50,7 +58,13 @@
       <div class="flex items-center justify-between">
         <a href="/" class="-m-1.5 p-1.5">
           <span class="sr-only">406 Records</span>
-          <img class="h-8 w-auto" src="/logo.png" alt="406 Records logo">
+          {{- $logo := resources.Get "images/logo.png" -}}
+          {{- $logoWebp := $logo.Resize "64x webp" -}}
+          {{- $logoPng := $logo.Resize "64x png" -}}
+          <picture>
+            <source type="image/webp" srcset="{{ $logoWebp.RelPermalink }}">
+            <img class="h-8 w-auto" src="{{ $logoPng.RelPermalink }}" alt="406 Records logo" width="32" height="32">
+          </picture>
         </a>
         <button
           type="button"

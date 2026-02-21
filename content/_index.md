@@ -4,7 +4,7 @@ description: "Professional recording, mixing, mastering & music production in He
 hero:
   headline: "Your Sound. Montana Made."
   description: "From a rough idea to a finished record. Full album production, mixing, and mastering — all under one roof in Helena, Montana."
-  image: "/images/hero.jpg"
+  image: "images/hero.jpg"
   buttons:
     - text: "Hear Our Work"
       href: "#discography"
@@ -45,5 +45,5 @@ biography:
   content: |
     <p>I've been a musician since 2005, playing shows across 17 states and 6 countries. After moving to Montana and starting a family, I decided to put down roots and build a studio.</p>
     <p>406 Records started in 2024 when I built a studio to produce Lance Handyside's debut album, <em>Six String Ride.</em> The result was good enough to turn into a business.</p>
-  image: "/images/kyle-willis.png"
+  image: "images/kyle-willis.png"
 ---

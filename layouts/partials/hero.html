@@ -1,12 +1,27 @@
 <section id="hero" aria-labelledby="hero-heading" class="relative isolate overflow-hidden">
   <!-- Full-bleed hero image with gradient overlay -->
   <div class="absolute inset-0">
-    <img
-      class="h-full w-full object-cover"
-      src="{{ .Params.hero.image }}"
-      alt="406 Records recording studio in Helena, Montana"
-      fetchpriority="high"
-    >
+    {{- $src := resources.Get .Params.hero.image -}}
+    {{- $fallback := $src.Resize "1920x jpg" -}}
+    <picture>
+      <source
+        type="image/webp"
+        srcset="
+          {{ ($src.Resize "640x webp").RelPermalink }} 640w,
+          {{ ($src.Resize "1024x webp").RelPermalink }} 1024w,
+          {{ ($src.Resize "1536x webp").RelPermalink }} 1536w,
+          {{ ($src.Resize "1920x webp").RelPermalink }} 1920w"
+        sizes="100vw"
+      >
+      <img
+        class="h-full w-full object-cover"
+        src="{{ $fallback.RelPermalink }}"
+        alt="406 Records recording studio in Helena, Montana"
+        width="{{ $fallback.Width }}"
+        height="{{ $fallback.Height }}"
+        fetchpriority="high"
+      >
+    </picture>
     <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40"></div>
   </div>
 

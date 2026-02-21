@@ -12,12 +12,20 @@
       {{ $artist := .artist }}
       <div class="bg-card rounded-xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10">
         <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" aria-label="Listen to {{ .artist }}{{ with .album }} - {{ . }}{{ end }} on Spotify" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded-t-xl">
-          <img
-            class="aspect-square w-full object-cover"
-            src="{{ .image }}"
-            alt="Album cover for {{ .artist }}{{ with .album }} - {{ . }}{{ end }}"
-            loading="lazy"
-          >
+          {{- $src := resources.Get .image -}}
+          {{- $webp := $src.Fill "600x600 Center webp" -}}
+          {{- $fallback := $src.Fill "600x600 Center jpg" -}}
+          <picture>
+            <source type="image/webp" srcset="{{ $webp.RelPermalink }}">
+            <img
+              class="aspect-square w-full object-cover"
+              src="{{ $fallback.RelPermalink }}"
+              alt="Album cover for {{ .artist }}{{ with .album }} - {{ . }}{{ end }}"
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          </picture>
         </a>
         <div class="p-4 md:p-6">
           <h3 class="text-lg font-semibold leading-8 tracking-tight text-foreground text-center">
