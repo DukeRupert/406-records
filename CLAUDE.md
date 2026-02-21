@@ -5,97 +5,90 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ```bash
-npm run dev              # Start dev server
-npm run build            # Production build
-npm run preview          # Preview production build
-npm run check            # Run svelte-check type checking
-npm run check:watch      # Watch mode type checking
-npm run lint             # ESLint + Prettier check
-npm run format           # Auto-format with Prettier
-npm run test             # Run all tests (integration + unit)
-npm run test:integration # Playwright E2E tests
-npm run test:unit        # Vitest unit tests
+npm run dev       # Hugo dev server with drafts enabled
+npm run build     # Production build (hugo --minify)
+```
+
+Hugo requires the extended version (>=0.128.0). TailwindCSS is processed via PostCSS during the Hugo build pipeline.
+
+The Go API has no separate dev command — it runs inside Docker. To test locally:
+```bash
+cd api && go build -o api-server main.go && ./api-server
 ```
 
 ## Tech Stack
 
-- **SvelteKit 2.7** with **Svelte 5** (uses runes: `$state`, `$props`, snippets)
-- **TailwindCSS** with dark mode (class-based via mode-watcher)
-- **Bits UI** for accessible ShadcN-style components
-- **Directus SDK** for headless CMS integration
-- **Postmark** for transactional email
+- **Hugo** (extended) — static site generator
+- **TailwindCSS 3** — utility CSS via PostCSS, class-based dark mode
+- **Go** — contact form API backend (standard library only, no framework)
+- **Caddy** — serves static files + reverse proxies `/api/*` to Go backend
+- **Swiper.js** — discography carousel (loaded via CDN)
+- **Cloudflare Turnstile** — spam protection on contact form
+- **Postmark** — transactional email delivery
 
 ## Architecture
 
-### Directus CMS Integration
+### Single-page Hugo site
 
-The app fetches content from Directus CMS with a polymorphic block system:
-
-- **Client setup**: `src/lib/directus/index.ts` - REST client and `build_asset_url()` helper
-- **Block renderer**: `src/lib/directus/components/Blocks.svelte` - Dynamically renders blocks by type
-- **Block types**: `block_hero`, `block_content`, `block_discography` → corresponding Svelte components
-
-Data flows: Directus → `+page.ts`/`+layout.ts` load functions → Page components
-
-### Form Handling Pattern
-
-Contact form in `+page.svelte` uses SvelteKit form actions:
-- Server validation in `+page.server.ts` with `validateForm()` and `validatePhone()`
-- Honeypot fields (`bot_trap`, `address`) for spam prevention
-- Progressive enhancement with `use:enhance`
-- Email delivery via Postmark client (`src/lib/postmark.ts`)
-
-### Component Patterns (Svelte 5)
-
-```svelte
-<!-- Rune-based reactivity -->
-let nav_open = $state(false);
-let { links, logo } = $props();
-
-<!-- Snippet pattern for reusable markup -->
-{#snippet Navbar(link)}
-  <a href={link.href}>{link.label}</a>
-{/snippet}
-{@render Navbar(link)}
-```
-
-### Styling System
-
-CSS variables define HSL color tokens (`--primary`, `--foreground`, etc.) in `app.css`. Dark mode toggled via `.dark` class with `mode-watcher`. Typography uses `@tailwindcss/typography` plugin.
-
-## Key Directories
-
-- `src/lib/components/` - App components (Header, Footer, Lightswitch)
-- `src/lib/directus/components/` - CMS block components
-- `src/lib/ui/` - ShadcN-style UI primitives
-
-## Environment Variables
+The site is a single-page layout. `layouts/index.html` defines the homepage by composing partials in order:
 
 ```
-PUBLIC_DIRECTUS_ENDPOINT  # Directus CMS URL
-POSTMARK_API_TOKEN        # Email service token
-FROM_EMAIL                # Sender email
-CONTACT_FORM_EMAIL        # Form submission recipient
+hero → discography → services → pricing → biography → artists → contact
 ```
 
-## Deployment
+Each section is a partial in `layouts/partials/`. The base template is `layouts/_default/baseof.html`.
 
-Deployed via GitHub Actions to a VPS with Docker.
+### Data-driven content
 
-**Pipeline**: Push to `master`/`main` → Build Docker image → Push to DockerHub → SSH deploy to VPS
+YAML files in `data/` drive dynamic content:
+- `nav.yaml` — navigation links (anchor links to page sections)
+- `albums.yaml` — discography entries (artist, album, image, Spotify link, service tags)
+- `social.yaml` — social media links (Spotify, Facebook, X, YouTube)
+
+Site-wide params are in `hugo.toml` under `[params]`.
+
+### Contact form flow
+
+The contact form uses a two-tier architecture:
+
+1. **Frontend** (`layouts/partials/contact.html` + `static/js/main.js`): Client-side validation, Turnstile widget, POSTs JSON to `/api/contact`
+2. **Backend** (`api/main.go`): Validates input, verifies Turnstile token with Cloudflare, sends email via Postmark API
+
+API endpoints: `POST /api/contact`, `GET /api/health`
+
+### Styling system
+
+HSL CSS custom properties defined in `assets/css/main.css` (shadcn/ui-style tokens). Dark mode defaults on (`<html class="dark">`), toggled via `localStorage.setItem('theme', ...)`. Tailwind config in `tailwind.config.js` maps these tokens to utility classes (`bg-background`, `text-foreground`, `bg-primary`, etc.).
+
+### Client-side JavaScript
+
+All JS is in `static/js/main.js` (vanilla, no bundler):
+- Dark mode toggle
+- Mobile menu open/close
+- Contact form validation + async submission
+- Swiper carousel initialization
+
+## Docker & Deployment
+
+Multi-stage Dockerfile:
+1. **hugo-builder** — installs Node.js, runs `npm install` + `hugo --minify`
+2. **go-builder** — compiles Go API to static binary
+3. **Final image** — Caddy Alpine with supervisord running both Caddy and the Go API
+
+`supervisord.conf` manages both processes. `docker-entrypoint.sh` exports env vars then hands off to supervisord.
+
+**Pipeline**: Push to `master`/`main` → GitHub Actions builds Docker image → pushes to DockerHub → SSH deploys to VPS at `/opt/406-records`
+
+### Environment Variables (runtime, set in VPS `.env`)
+
+```
+POSTMARK_TOKEN    # Postmark API key
+FROM_EMAIL        # Authorized sender email
+TO_EMAIL          # Contact form recipient
+ALLOWED_ORIGIN    # CORS origin (default: https://www.406records.com)
+TURNSTILE_SECRET  # Cloudflare Turnstile secret key
+```
 
 ### GitHub Secrets Required
 
-| Secret | Description |
-|--------|-------------|
-| `DOCKERHUB_USERNAME` | Docker Hub username |
-| `DOCKERHUB_TOKEN` | Docker Hub access token |
-| `VPS_HOST` | VPS IP address or hostname |
-| `VPS_USER` | SSH username on VPS |
-| `VPS_SSH_KEY` | Private SSH key for VPS access |
-
-### VPS Setup
-
-1. Create deploy directory: `sudo mkdir -p /opt/406-records`
-2. Copy `docker-compose.yml` and `.env` (from `.env.example`) to `/opt/406-records/`
-3. Configure outer Caddy to reverse proxy to `localhost:3000`
+`DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`
