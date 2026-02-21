@@ -36,7 +36,7 @@
       {{ range site.Data.nav }}
       <a
         href="{{ .href }}"
-        class="text-sm font-semibold capitalize leading-6 text-foreground hover:text-primary"
+        class="text-sm font-semibold capitalize leading-6 text-foreground hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
       >{{ .label }}</a>
       {{ end }}
     </div>
@@ -76,7 +76,7 @@
             {{ range site.Data.nav }}
             <a
               href="{{ .href }}"
-              class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold capitalize leading-7 text-foreground hover:text-primary"
+              class="mobile-menu-link -mx-3 block rounded-lg px-3 py-2 text-base font-semibold capitalize leading-7 text-foreground hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >{{ .label }}</a>
             {{ end }}
           </div>

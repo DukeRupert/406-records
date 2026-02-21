@@ -1,9 +1,9 @@
-<div id="biography" class="relative isolate overflow-hidden bg-background py-24 sm:py-32">
+<section id="biography" aria-labelledby="biography-heading" class="relative isolate overflow-hidden bg-background py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
       <div class="lg:col-span-1">
         <div class="prose prose-invert lg:prose-xl prose-p:text-muted-foreground">
-          <h2 class="mt-2 text-pretty text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-foreground">
+          <h2 id="biography-heading" class="mt-2 text-pretty text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-foreground">
             {{ .Params.biography.title }}
           </h2>
           {{ .Params.biography.content | safeHTML }}
@@ -21,4 +21,4 @@
       {{ end }}
     </div>
   </div>
-</div>
+</section>

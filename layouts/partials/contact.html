@@ -1,8 +1,8 @@
-<div id="contact-us" class="relative isolate bg-background pt-14">
+<section id="contact-us" aria-labelledby="contact-heading" class="relative isolate bg-background pt-14">
   <div class="py-24 sm:py-32 lg:pb-40">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-pretty text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-foreground">
+        <h2 id="contact-heading" class="text-pretty text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-foreground">
           Let's Talk About Your Project
         </h2>
         <p class="mt-4 text-lg text-muted-foreground">Every project starts with a conversation. Tell us what you're working on.</p>
@@ -17,6 +17,8 @@
                 type="text"
                 name="name"
                 id="name"
+                autocomplete="name"
+                aria-describedby="name-error"
                 class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
                 required
                 maxlength="80"
@@ -32,6 +34,8 @@
                 type="email"
                 name="email"
                 id="email"
+                autocomplete="email"
+                aria-describedby="email-error"
                 class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
                 required
               >
@@ -46,6 +50,8 @@
                 type="tel"
                 name="phone"
                 id="phone"
+                autocomplete="tel"
+                aria-describedby="phone-error"
                 class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
                 required
               >
@@ -59,10 +65,11 @@
               <select
                 name="project_type"
                 id="project_type"
+                aria-describedby="project_type-error"
                 class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
                 required
               >
-                <option value="" class="text-muted-foreground">Select a project type</option>
+                <option value="" disabled selected class="text-muted-foreground">Select a project type</option>
                 <option value="Recording">Recording</option>
                 <option value="Mixing">Mixing</option>
                 <option value="Mastering">Mastering</option>
@@ -80,6 +87,7 @@
                 name="message"
                 id="message"
                 rows="4"
+                aria-describedby="message-error"
                 class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
                 required
               ></textarea>
@@ -101,13 +109,13 @@
           </button>
         </div>
         <div class="mt-6">
-          <p id="form-success" class="text-emerald-400 text-center hidden"></p>
-          <p id="form-error" class="text-destructive text-center hidden"></p>
+          <p id="form-success" role="status" aria-live="polite" class="text-emerald-400 text-center hidden"></p>
+          <p id="form-error" role="alert" aria-live="assertive" class="text-destructive text-center hidden"></p>
         </div>
       </form>
     </div>
   </div>
-</div>
+</section>
 
 <!-- Cloudflare Turnstile script -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

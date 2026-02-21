@@ -13,15 +13,50 @@ function openMobileMenu() {
   mobileMenuPanel.offsetHeight;
   mobileMenuPanel.classList.add('open');
   mobileMenuPanel.classList.remove('translate-x-full');
+  // Move focus to close button
+  mobileMenuClose?.focus();
+  // Add focus trap
+  document.addEventListener('keydown', trapFocusInMenu);
 }
 
 function closeMobileMenu() {
   mobileMenuPanel.classList.remove('open');
   mobileMenuPanel.classList.add('translate-x-full');
   mobileMenuButton?.setAttribute('aria-expanded', 'false');
+  document.removeEventListener('keydown', trapFocusInMenu);
   setTimeout(() => {
     mobileMenu.classList.add('hidden');
   }, 250);
+  // Restore focus to the menu button
+  mobileMenuButton?.focus();
+}
+
+function trapFocusInMenu(e) {
+  if (e.key === 'Escape') {
+    closeMobileMenu();
+    return;
+  }
+  if (e.key !== 'Tab') return;
+
+  const focusableEls = mobileMenuPanel.querySelectorAll(
+    'a[href], button, [tabindex]:not([tabindex="-1"])'
+  );
+  if (focusableEls.length === 0) return;
+
+  const firstEl = focusableEls[0];
+  const lastEl = focusableEls[focusableEls.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstEl) {
+      e.preventDefault();
+      lastEl.focus();
+    }
+  } else {
+    if (document.activeElement === lastEl) {
+      e.preventDefault();
+      firstEl.focus();
+    }
+  }
 }
 
 mobileMenuButton?.addEventListener('click', openMobileMenu);

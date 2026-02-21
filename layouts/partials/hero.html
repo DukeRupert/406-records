@@ -1,4 +1,4 @@
-<div id="hero" class="relative isolate overflow-hidden">
+<section id="hero" aria-labelledby="hero-heading" class="relative isolate overflow-hidden">
   <!-- Full-bleed hero image with gradient overlay -->
   <div class="absolute inset-0">
     <img
@@ -13,7 +13,7 @@
   <div class="relative py-24 md:py-40">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+        <h1 id="hero-heading" class="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
           {{ .Params.hero.headline }}
         </h1>
         <p class="mt-6 text-lg leading-8 text-muted-foreground">
@@ -38,4 +38,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

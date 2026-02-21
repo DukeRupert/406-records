@@ -1,7 +1,7 @@
-<div id="discography" class="bg-card py-20 md:py-32">
+<section id="discography" aria-labelledby="discography-heading" class="bg-card py-20 md:py-32">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0 mb-12">
-      <h2 class="text-pretty text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+      <h2 id="discography-heading" class="text-pretty text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
         Discography
       </h2>
     </div>
@@ -9,8 +9,9 @@
     <!-- Album Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {{ range site.Data.albums }}
+      {{ $artist := .artist }}
       <div class="bg-card rounded-xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10">
-        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" aria-label="Listen to {{ .artist }}{{ with .album }} - {{ . }}{{ end }} on Spotify" class="block">
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" aria-label="Listen to {{ .artist }}{{ with .album }} - {{ . }}{{ end }} on Spotify" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded-t-xl">
           <img
             class="aspect-square w-full object-cover"
             src="{{ .image }}"
@@ -49,7 +50,7 @@
               frameBorder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
-              title="Listen on Spotify"
+              title="Listen to {{ $artist }} on Spotify"
             ></iframe>
           </div>
           {{ end }}
@@ -58,4 +59,4 @@
       {{ end }}
     </div>
   </div>
-</div>
+</section>

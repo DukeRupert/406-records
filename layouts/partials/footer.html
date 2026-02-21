@@ -5,7 +5,7 @@
       <div class="pb-6">
         <a
           href="{{ .href }}"
-          class="text-sm capitalize leading-6 text-muted-foreground hover:text-primary"
+          class="text-sm capitalize leading-6 text-muted-foreground hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
         >{{ .label }}</a>
       </div>
       {{ end }}
@@ -17,7 +17,7 @@
         href="https://open.spotify.com/artist/2Mv0v94Iur772e4PSWCEZF"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-md border border-primary/50 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10"
+        class="inline-flex items-center gap-2 rounded-md border border-primary/50 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         aria-label="Hear our work on Spotify"
       >
         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -29,7 +29,7 @@
 
     <div class="mt-10 flex justify-center space-x-10">
       {{ range site.Data.social }}
-      <a href="{{ .url }}" class="text-muted-foreground hover:text-primary" target="_blank" rel="noopener noreferrer"
+      <a href="{{ .url }}" class="text-muted-foreground hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full" target="_blank" rel="noopener noreferrer"
         {{ if eq .name "spotify" }}aria-label="Listen to 406 Records on Spotify"
         {{ else if eq .name "facebook" }}aria-label="Follow 406 Records on Facebook"
         {{ else if eq .name "x" }}aria-label="Follow 406 Records on X"
