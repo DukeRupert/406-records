@@ -38,7 +38,7 @@ pricing:
     <p>Every project is different, and your music deserves more than a stopwatch. I quote each project individually based on scope — not hours. Reach out with your vision and I'll give you an honest number.</p>
 artists:
   title: "Meet the Artists"
-  description: "The 406 Records 'Artist Interviews' YouTube channel features in-depth conversations with the talented musicians who record at 406 Records. These interviews offer unique insights into their creative processes, musical journeys, and the vibrant music scene in Montana."
+  description: "Hear the artists talk about their experience making music at 406 Records — what it's like to track in Helena, how the sessions came together, and what they're working on next."
   youtube_playlist: "https://www.youtube.com/embed/videoseries?list=PLpu9moa33-2qyqVqpDKhL8AvxK1zjsbwj"
 biography:
   title: "About"

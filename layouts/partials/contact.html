@@ -1,110 +1,110 @@
 <div id="contact-us" class="relative isolate bg-background pt-14">
   <div class="py-24 sm:py-32 lg:pb-40">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl">
-        <h1 class="text-pretty text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-pretty text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-foreground">
           Let's Talk About Your Project
-        </h1>
+        </h2>
         <p class="mt-4 text-lg text-muted-foreground">Every project starts with a conversation. Tell us what you're working on.</p>
-
-        <form id="contact-form" class="mt-12 rounded-xl bg-card p-6 ring-1 ring-border sm:p-8">
-          <div class="grid gap-y-6">
-            <div>
-              <label for="name" class="block text-sm font-semibold text-foreground">Name</label>
-              <div class="mt-2.5">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  class="block w-full rounded-md border border-border bg-input px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  required
-                  maxlength="80"
-                >
-              </div>
-              <p id="name-error" class="mt-2.5 text-sm text-destructive hidden"></p>
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-semibold text-foreground">Email</label>
-              <div class="mt-2.5">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  class="block w-full rounded-md border border-border bg-input px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  required
-                >
-              </div>
-              <p id="email-error" class="mt-2.5 text-sm text-destructive hidden"></p>
-            </div>
-
-            <div>
-              <label for="phone" class="block text-sm font-semibold text-foreground">Phone</label>
-              <div class="mt-2.5">
-                <input
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  class="block w-full rounded-md border border-border bg-input px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  required
-                >
-              </div>
-              <p id="phone-error" class="mt-2.5 text-sm text-destructive hidden"></p>
-            </div>
-
-            <div>
-              <label for="project_type" class="block text-sm font-semibold text-foreground">Project Type</label>
-              <div class="mt-2.5">
-                <select
-                  name="project_type"
-                  id="project_type"
-                  class="block w-full rounded-md border border-border bg-input px-3.5 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  required
-                >
-                  <option value="" class="text-muted-foreground">Select a project type</option>
-                  <option value="Recording">Recording</option>
-                  <option value="Mixing">Mixing</option>
-                  <option value="Mastering">Mastering</option>
-                  <option value="Full Production">Full Production</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <p id="project_type-error" class="mt-2.5 text-sm text-destructive hidden"></p>
-            </div>
-
-            <div>
-              <label for="message" class="block text-sm font-semibold text-foreground">Tell us about your project</label>
-              <div class="mt-2.5">
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="4"
-                  class="block w-full rounded-md border border-border bg-input px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  required
-                ></textarea>
-              </div>
-              <p id="message-error" class="mt-2.5 text-sm text-destructive hidden"></p>
-            </div>
-
-            <!-- Cloudflare Turnstile -->
-            <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey | default "0x4AAAAAAA" }}" data-theme="dark"></div>
-          </div>
-
-          <div class="mt-8">
-            <button
-              type="submit"
-              id="submit-btn"
-              class="rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Send Message
-            </button>
-          </div>
-          <div class="mt-6">
-            <p id="form-success" class="text-green-400 hidden"></p>
-            <p id="form-error" class="text-destructive hidden"></p>
-          </div>
-        </form>
       </div>
+
+      <form id="contact-form" class="mx-auto mt-12 max-w-xl rounded-3xl bg-card p-8 md:p-12 shadow-lg shadow-primary/5">
+        <div class="grid gap-y-8">
+          <div>
+            <label for="name" class="block text-sm font-medium text-muted-foreground">Name</label>
+            <div class="mt-2">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
+                required
+                maxlength="80"
+              >
+            </div>
+            <p id="name-error" class="mt-2 text-sm text-destructive hidden"></p>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-muted-foreground">Email</label>
+            <div class="mt-2">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
+                required
+              >
+            </div>
+            <p id="email-error" class="mt-2 text-sm text-destructive hidden"></p>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-muted-foreground">Phone</label>
+            <div class="mt-2">
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
+                required
+              >
+            </div>
+            <p id="phone-error" class="mt-2 text-sm text-destructive hidden"></p>
+          </div>
+
+          <div>
+            <label for="project_type" class="block text-sm font-medium text-muted-foreground">Project Type</label>
+            <div class="mt-2">
+              <select
+                name="project_type"
+                id="project_type"
+                class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
+                required
+              >
+                <option value="" class="text-muted-foreground">Select a project type</option>
+                <option value="Recording">Recording</option>
+                <option value="Mixing">Mixing</option>
+                <option value="Mastering">Mastering</option>
+                <option value="Full Production">Full Production</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <p id="project_type-error" class="mt-2 text-sm text-destructive hidden"></p>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-muted-foreground">Tell us about your project</label>
+            <div class="mt-2">
+              <textarea
+                name="message"
+                id="message"
+                rows="4"
+                class="block w-full rounded-xl border border-border bg-input px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#D4A853] focus:ring-1 focus:ring-[#D4A853] transition-colors"
+                required
+              ></textarea>
+            </div>
+            <p id="message-error" class="mt-2 text-sm text-destructive hidden"></p>
+          </div>
+
+          <!-- Cloudflare Turnstile -->
+          <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey | default "0x4AAAAAAA" }}" data-theme="dark"></div>
+        </div>
+
+        <div class="mt-10">
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full rounded-xl bg-primary px-6 py-3.5 text-sm font-medium tracking-wide text-primary-foreground shadow-sm hover:bg-[#E8C06A] focus:outline-none focus:ring-2 focus:ring-[#D4A853] focus:ring-offset-2 focus:ring-offset-[#131211] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Get in Touch
+          </button>
+        </div>
+        <div class="mt-6">
+          <p id="form-success" class="text-emerald-400 text-center hidden"></p>
+          <p id="form-error" class="text-destructive text-center hidden"></p>
+        </div>
+      </form>
     </div>
   </div>
 </div>
