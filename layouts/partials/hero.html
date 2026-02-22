@@ -35,17 +35,17 @@
           {{ .Params.hero.description }}
         </p>
 
-        <div class="mt-10 flex items-center justify-center gap-x-6">
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
           {{ range .Params.hero.buttons }}
           {{ if eq .style "primary" }}
           <a
             href="{{ .href }}"
-            class="rounded-lg bg-primary px-6 py-3 text-sm font-medium tracking-wide text-primary-foreground shadow-sm hover:bg-[#E8C06A] focus:outline-none focus:ring-2 focus:ring-[#D4A853] focus:ring-offset-2 focus:ring-offset-[#131211] transition-colors"
+            class="rounded-lg bg-primary px-6 py-3 text-sm font-medium tracking-wide text-primary-foreground shadow-sm hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background transition-colors"
           >{{ .text }}</a>
           {{ else }}
           <a
             href="{{ .href }}"
-            class="rounded-lg border border-[#D4A853] px-6 py-3 text-sm font-medium tracking-wide text-[#D4A853] hover:bg-[#D4A853]/10 focus:outline-none focus:ring-2 focus:ring-[#D4A853] focus:ring-offset-2 focus:ring-offset-[#131211] transition-colors"
+            class="rounded-lg border border-primary px-6 py-3 text-sm font-medium tracking-wide text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background transition-colors"
           >{{ .text }}</a>
           {{ end }}
           {{ end }}

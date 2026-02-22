@@ -95,7 +95,7 @@
   <!-- Plausible Analytics -->
   <script defer data-domain="406records.com" src="https://plausible.io/js/script.js"></script>
 </head>
-<body class="bg-background text-foreground antialiased">
+<body class="min-h-screen flex flex-col bg-background text-foreground antialiased">
   <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none">
     Skip to main content
@@ -103,7 +103,7 @@
 
   {{ partial "header.html" . }}
 
-  <main id="main-content">
+  <main id="main-content" class="flex-1">
     {{ block "main" . }}{{ end }}
   </main>
 
