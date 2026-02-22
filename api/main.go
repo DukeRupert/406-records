@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net"
 	"net/http"
 	"net/mail"
 	"os"
 	"regexp"
 	"strings"
+	"sync"
+	"time"
 )
 
 type ContactRequest struct {
@@ -20,6 +23,7 @@ type ContactRequest struct {
 	ProjectType    string `json:"project_type"`
 	Message        string `json:"message"`
 	TurnstileToken string `json:"turnstile_token"`
+	Website        string `json:"website"`
 }
 
 type ContactResponse struct {
@@ -42,6 +46,62 @@ type PostmarkEmail struct {
 	TextBody string `json:"TextBody"`
 	HtmlBody string `json:"HtmlBody"`
 }
+
+// Rate limiter for contact form submissions
+type rateLimiter struct {
+	mu       sync.Mutex
+	requests map[string][]time.Time
+	limit    int
+	window   time.Duration
+}
+
+func newRateLimiter(limit int, window time.Duration) *rateLimiter {
+	return &rateLimiter{
+		requests: make(map[string][]time.Time),
+		limit:    limit,
+		window:   window,
+	}
+}
+
+func (rl *rateLimiter) allow(ip string) bool {
+	rl.mu.Lock()
+	defer rl.mu.Unlock()
+
+	now := time.Now()
+	cutoff := now.Add(-rl.window)
+
+	var valid []time.Time
+	for _, t := range rl.requests[ip] {
+		if t.After(cutoff) {
+			valid = append(valid, t)
+		}
+	}
+
+	if len(valid) >= rl.limit {
+		rl.requests[ip] = valid
+		return false
+	}
+
+	rl.requests[ip] = append(valid, now)
+	return true
+}
+
+func getClientIP(r *http.Request) string {
+	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
+		if i := strings.IndexByte(xff, ','); i > 0 {
+			return strings.TrimSpace(xff[:i])
+		}
+		return strings.TrimSpace(xff)
+	}
+	host, _, err := net.SplitHostPort(r.RemoteAddr)
+	if err != nil {
+		return r.RemoteAddr
+	}
+	return host
+}
+
+// 5 contact form submissions per IP per hour
+var contactLimiter = newRateLimiter(5, time.Hour)
 
 func main() {
 	port := os.Getenv("PORT")
@@ -86,9 +146,22 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Rate limiting
+	clientIP := getClientIP(r)
+	if !contactLimiter.allow(clientIP) {
+		sendError(w, "Too many requests. Please try again later.", http.StatusTooManyRequests)
+		return
+	}
+
 	var req ContactRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		sendError(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	// Honeypot check — silently accept but don't process
+	if req.Website != "" {
+		sendSuccess(w, "Thank you for your message! We'll be in touch soon.")
 		return
 	}
 

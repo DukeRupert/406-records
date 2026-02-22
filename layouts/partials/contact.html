@@ -95,6 +95,12 @@
             <p id="message-error" class="mt-2 text-sm text-destructive hidden"></p>
           </div>
 
+          <!-- Honeypot — hidden from real users, catches bots -->
+          <div class="absolute -left-[9999px]" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <!-- Cloudflare Turnstile -->
           <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey }}" data-theme="dark"></div>
         </div>

@@ -29,21 +29,24 @@
     </div>
     {{ end }}
 
-    <!-- Testimonial -->
-    {{ with .Params.services.testimonial }}
-    <div class="mx-auto mt-16 max-w-3xl lg:mx-0">
-      <figure class="border-l-2 border-primary pl-8 py-4">
-        <div class="relative">
-          <span class="absolute -top-4 -left-4 text-6xl leading-none text-primary/30 font-serif" aria-hidden="true">"</span>
-          <blockquote class="text-xl italic leading-8 tracking-tight text-foreground">
-            <p>{{ .quote }}</p>
-          </blockquote>
-        </div>
-        <figcaption class="mt-6">
-          <div class="font-semibold text-primary">{{ .author }}</div>
-          <div class="text-sm text-muted-foreground">Artist</div>
-        </figcaption>
-      </figure>
+    <!-- Testimonials -->
+    {{ with .Params.services.testimonials }}
+    <div class="mx-auto mt-16 max-w-3xl lg:mx-0 lg:max-w-none">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {{ range . }}
+        <figure class="border-l-2 border-primary pl-8 py-4">
+          <div class="relative">
+            <span class="absolute -top-4 -left-4 text-6xl leading-none text-primary/30 font-serif" aria-hidden="true">"</span>
+            <blockquote class="text-lg italic leading-8 tracking-tight text-foreground">
+              <p>{{ .quote }}</p>
+            </blockquote>
+          </div>
+          <figcaption class="mt-6">
+            <div class="font-semibold text-primary">{{ .author }}</div>
+          </figcaption>
+        </figure>
+        {{ end }}
+      </div>
     </div>
     {{ end }}
   </div>

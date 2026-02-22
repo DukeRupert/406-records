@@ -27,9 +27,15 @@ services:
     - icon: "music"
       name: "Production"
       description: "Full creative partnership from arrangement to final master — start to finish. If you've got a song idea but aren't sure how to build it out, that's where this starts. Kyle brings two decades of playing into every production decision — what the song needs, what it doesn't, and how to get there without losing the thing that made it worth recording."
-  testimonial:
-    quote: "Kyle has an amazing ability to transform your rough ideas into polished, professional-sounding tracks."
-    author: "Lance Handyside"
+  testimonials:
+    - quote: "Kyle is an absolute wizard behind the console and one of the easiest people to work with. He asked me what I wanted as far as the sound of my album, and delivered exactly what I wanted. His prices are more than reasonable when compared to other studios I've dealt with."
+      author: "Lance Handyside"
+    - quote: "I had a great recording experience with Kyle. He has a well-equipped studio and he was very proficient and knowledgeable in recording and balancing all the levels to get your sound just the way you want it. I look forward to my next time I am passing through Clancy so I can stop by and cut some more tracks with him!"
+      author: "Danny Proudfoot"
+    - quote: "Best place in Montana to record your original songs. Everything went great! The producer went beyond my expectations. Definitely record there again."
+      author: "Gary Frigo"
+    - quote: "Kyle was fantastic to work with. It doesn't matter how you want to record your music, Kyle can make it happen. It was easy set up, a great atmosphere, laid back and professional."
+      author: "Joshua Turner"
 pricing:
   title: "Pricing"
   content: |
