@@ -109,6 +109,10 @@
 
   {{ partial "footer.html" . }}
 
-  <script src="/js/main.js" defer></script>
+  {{ $js := resources.Get "js/main.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $js = $js | minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
 </body>
 </html>
