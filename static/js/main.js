@@ -66,6 +66,20 @@ mobileMenuLinks.forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
 
+// FAQ accordion
+document.querySelectorAll('.faq-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    const dt = button.parentElement;
+    const answer = dt.nextElementSibling;
+    const icon = button.querySelector('.faq-icon');
+
+    button.setAttribute('aria-expanded', String(!expanded));
+    answer.classList.toggle('hidden');
+    icon.classList.toggle('rotate-45');
+  });
+});
+
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
 const submitBtn = document.getElementById('submit-btn');
