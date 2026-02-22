@@ -2,6 +2,7 @@ baseURL = "https://www.406records.com/"
 languageCode = "en-us"
 title = "406 Records | Recording Studio in Helena, MT"
 enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "Professional recording, mixing, mastering & music production in Helena, Montana. Founded by touring musician Kyle Willis. Hear our work on Spotify."

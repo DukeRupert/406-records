@@ -52,7 +52,7 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-EXPOSE 80
+EXPOSE 80 443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
