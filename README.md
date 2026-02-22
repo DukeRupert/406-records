@@ -1,31 +1,69 @@
-# Sveltekit-Tailwind-Directus Starter
+# 406 Records
 
-A modern, full-stack web development template combining the power of [Sveltekit](https://kit.svelte.dev/), the utility of [TailwindCSS](https://tailwindcss.com/), and the flexibility of [Directus](https://directus.io/) CMS.
+Website for 406 Records, a recording studio in Helena, Montana. Built with Hugo, TailwindCSS, and a Go contact form API.
 
-## Features
+**Live site:** [406records.com](https://www.406records.com)
 
-- **Sveltekit**: Fast and efficient JavaScript framework for building web applications
-- **TailwindCSS**: Highly customizable, low-level CSS framework
-- **Directus**: Headless CMS for managing content and data
+## Tech Stack
 
-## Quick Start
+- **Hugo** (extended) — static site generator
+- **TailwindCSS 3** — utility CSS via PostCSS, dark mode first
+- **Go** — contact form API (standard library, no framework)
+- **Caddy** — static file server + reverse proxy for `/api/*`
+- **Swiper.js** — discography carousel (CDN)
+- **Cloudflare Turnstile** — contact form spam protection
+- **Postmark** — transactional email delivery
+- **Plausible Analytics** — privacy-focused analytics
 
-1. Clone this repository
-2. Install dependencies: `npm install`
-3. Set up Directus (see Directus setup section)
-4. Run the development server: `npm run dev`
+## Development
 
-## What's Included
+```bash
+npm install
+npm run dev       # Hugo dev server with drafts
+npm run build     # Production build (hugo --minify)
+```
 
-- Pre-configured Sveltekit project
-- TailwindCSS setup with basic configuration
-- Directus integration boilerplate
-- Basic project structure and example components
+Hugo extended >= 0.128.0 is required.
 
-## Contributing
+To test the Go API locally:
 
-Contributions are welcome! Nothing fancy here, just make a pull request and I'll review it as soon as I am able.
+```bash
+cd api && go build -o api-server main.go && ./api-server
+```
 
-## License
+## Project Structure
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```
+content/_index.md          # All page content (YAML front matter)
+layouts/index.html         # Homepage — composes section partials
+layouts/partials/          # hero, discography, services, pricing, faq, biography, artists, contact
+layouts/_default/single.html  # Layout for standalone pages (privacy policy, etc.)
+data/                      # albums.yaml, nav.yaml, social.yaml
+assets/css/main.css        # HSL design tokens (shadcn/ui style)
+static/js/main.js          # Mobile menu, FAQ accordion, contact form
+api/main.go                # Contact form API
+```
+
+## Deployment
+
+Multi-stage Docker build:
+
+1. **hugo-builder** — Node.js + Hugo production build
+2. **go-builder** — compiles Go API to static binary
+3. **Final image** — Caddy Alpine + supervisord running Caddy and the Go API
+
+Pipeline: push to `master` → GitHub Actions → Docker image → DockerHub → SSH deploy to VPS
+
+### Environment Variables (runtime)
+
+| Variable | Description |
+|---|---|
+| `POSTMARK_TOKEN` | Postmark API key |
+| `FROM_EMAIL` | Authorized sender email |
+| `TO_EMAIL` | Contact form recipient |
+| `ALLOWED_ORIGIN` | CORS origin (default: https://www.406records.com) |
+| `TURNSTILE_SECRET` | Cloudflare Turnstile secret key |
+
+### GitHub Secrets
+
+`DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`
