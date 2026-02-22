@@ -1,9 +1,4 @@
-# Redirect bare domain to www
-406records.com {
-    redir https://www.406records.com{uri} permanent
-}
-
-www.406records.com {
+:80 {
     # Serve static files from Hugo build
     root * /srv
     file_server
