@@ -7,7 +7,7 @@ enableRobotsTXT = true
   description = "Professional recording, mixing, mastering & music production in Helena, Montana. Founded by touring musician Kyle Willis. Hear our work on Spotify."
   author = "Kyle Willis"
   # Cloudflare Turnstile site key for contact form
-  turnstileSiteKey = "0x4AAAAAAA"
+  turnstileSiteKey = "0x4AAAAAACggBrHf1sDJh8e_"
 
 [sitemap]
   changefreq = "monthly"
