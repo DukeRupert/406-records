@@ -1,3 +1,6 @@
+// Plausible Analytics custom events
+window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+
 // Mobile menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenuClose = document.getElementById('mobile-menu-close');
@@ -199,13 +202,15 @@ contactForm?.addEventListener('submit', async function(e) {
     const result = await response.json();
 
     if (response.ok && result.success) {
-      formSuccess.textContent = result.message || 'Thank you for your message! We\'ll be in touch soon.';
+      formSuccess.textContent = 'Thank you for your message! We typically respond within 24 hours.';
       formSuccess.classList.remove('hidden');
       contactForm.reset();
       // Reset Turnstile
       if (window.turnstile) {
         window.turnstile.reset();
       }
+      // Track successful submission
+      plausible('Contact Form Submission');
     } else {
       formError.textContent = result.error || 'Something went wrong. Please try again.';
       formError.classList.remove('hidden');

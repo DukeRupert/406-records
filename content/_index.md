@@ -65,5 +65,5 @@ biography:
     <p>I came up playing guitar, and that's still where my ears live. Over those years on the road I played with bands, as a solo act, and in setups that changed from city to city — which means I've figured out how to get a sound out of just about any situation. That experience doesn't disappear when I sit down behind the board.</p>
     <p>The way I work is pretty straightforward: I want to understand what you're going for before we record a single note. Not because I need a creative brief — because the right take sounds like you, and I can't help you get there if I don't know where there is. Scope-based pricing follows from the same thinking. If I'm watching the clock, I'm not listening.</p>
     <p>What I can offer that a bigger room can't is continuity. I engineer the session, produce the record, mix the tracks, and master the final file — and it's the same set of ears all the way through. By the time Lance Handyside, Alex Zimmerman, Lindzy Neilson, and Gary Frigo walked out, I knew their music as well as they did. That's the kind of attention you can't schedule in two-hour blocks.</p>
-  image: "images/kyle-willis.png"
+  image: "images/kyle-willis.jpg"
 ---

@@ -31,4 +31,12 @@
       </dl>
     </div>
   </div>
+
+  {{- $faqItems := slice -}}
+  {{- range .Params.faq.items -}}
+    {{- $faqItems = $faqItems | append (dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer)) -}}
+  {{- end -}}
+  <script type="application/ld+json">
+  {{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $faqItems | jsonify (dict "indent" "  ") }}
+  </script>
 </section>
