@@ -1,6 +1,6 @@
 {
   "name": "406-records",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "406 Records - Professional Recording Services",
   "scripts": {
     "dev": "hugo server -D",
