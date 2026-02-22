@@ -80,6 +80,21 @@ document.querySelectorAll('.faq-toggle').forEach(button => {
   });
 });
 
+// Footer logo record spin on scroll into view
+const footerLogo = document.getElementById('footer-logo');
+if (footerLogo) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        footerLogo.classList.remove('record-spin');
+        void footerLogo.offsetHeight;
+        footerLogo.classList.add('record-spin');
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(footerLogo);
+}
+
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
 const submitBtn = document.getElementById('submit-btn');

@@ -1,5 +1,23 @@
 <footer class="bg-background">
   <div class="mx-auto max-w-6xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+    {{- $logo := resources.Get "images/logo.png" -}}
+    {{- $logoWebp := $logo.Resize "192x webp" -}}
+    {{- $logoPng := $logo.Resize "192x png" -}}
+    <div class="flex justify-center mb-10">
+      <a href="/" class="block">
+        <picture>
+          <source type="image/webp" srcset="{{ $logoWebp.RelPermalink }}">
+          <img
+            id="footer-logo"
+            class="h-24 w-auto"
+            src="{{ $logoPng.RelPermalink }}"
+            alt="406 Records logo"
+            width="96"
+            height="96"
+          >
+        </picture>
+      </a>
+    </div>
     <nav class="-mb-6 grid grid-cols-2 sm:flex sm:justify-center sm:gap-x-12" aria-label="Footer">
       {{ range site.Data.nav }}
       <div class="pb-6">
