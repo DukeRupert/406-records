@@ -174,7 +174,7 @@ func handleContact(w http.ResponseWriter, r *http.Request) {
 	// Verify Turnstile token
 	turnstileSecret := os.Getenv("TURNSTILE_SECRET")
 	if turnstileSecret != "" && req.TurnstileToken != "" {
-		if !verifyTurnstile(turnstileSecret, req.TurnstileToken, r.RemoteAddr) {
+		if !verifyTurnstile(turnstileSecret, req.TurnstileToken, clientIP) {
 			sendError(w, "Security verification failed. Please try again.", http.StatusBadRequest)
 			return
 		}
@@ -264,6 +264,10 @@ func verifyTurnstile(secret, token, remoteIP string) bool {
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
 		log.Printf("Failed to decode Turnstile response: %v", err)
 		return false
+	}
+
+	if !result.Success {
+		log.Printf("Turnstile verification failed: error-codes=%v, hostname=%s", result.ErrorCodes, result.Hostname)
 	}
 
 	return result.Success
