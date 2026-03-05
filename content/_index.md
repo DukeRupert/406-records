@@ -49,8 +49,6 @@ faq:
       answer: "Absolutely. A lot of what I do is one or two songs at a time — a single for a release, a demo to shop around, a track for a specific project. Your music doesn't have to be a full record to be worth recording right."
     - question: "How long does it take to record an album?"
       answer: "It depends on the project. A stripped-down acoustic record moves faster than a full-band production with layered overdubs. I don't put an arbitrary timeline on things — when the record sounds right, it's done. We can talk through realistic expectations once I know what you're making."
-    - question: "What should I bring to a recording session?"
-      answer: "Bring your instrument and know your parts. If you play guitar, bring the one you play best — not the one you think sounds most 'studio.' I've got amps and backline in the studio, so don't stress about hauling gear if you'd rather not. Most importantly, bring a clear head and the willingness to try things more than once."
     - question: "What's the difference between mixing and mastering?"
       answer: "Mixing is where individual tracks — your vocals, guitars, drums, bass — get balanced, shaped, and turned into a cohesive song. Mastering is the final step after that: it's where the finished mix gets processed so it translates consistently on every speaker and meets the loudness standards for streaming. You need both, and I handle both in-house."
     - question: "What does a music producer actually do?"
@@ -68,8 +66,5 @@ biography:
   content: |
     <p>I've been a musician since 2005, playing shows across 17 states and 6 countries. After moving to Montana and starting a family, I decided to put down roots and build a studio.</p>
     <p>406 Records started in 2024 when I built a studio to produce Lance Handyside's debut album, <em>Six String Ride.</em> The result was good enough to turn into a business.</p>
-    <p>I came up playing guitar, and that's still where my ears live. Over those years on the road I played with bands, as a solo act, and in setups that changed from city to city — which means I've figured out how to get a sound out of just about any situation. That experience doesn't disappear when I sit down behind the board.</p>
-    <p>The way I work is pretty straightforward: I want to understand what you're going for before we record a single note. Not because I need a creative brief — because the right take sounds like you, and I can't help you get there if I don't know where there is. Scope-based pricing follows from the same thinking. If I'm watching the clock, I'm not listening.</p>
-    <p>What I can offer that a bigger room can't is continuity. I engineer the session, produce the record, mix the tracks, and master the final file — and it's the same set of ears all the way through. By the time Lance Handyside, Alex Zimmerman, Lindzy Neilson, and Gary Frigo walked out, I knew their music as well as they did. That's the kind of attention you can't schedule in two-hour blocks.</p>
   image: "images/kyle-willis.jpg"
 ---
